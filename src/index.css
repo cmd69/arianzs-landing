@@ -1,0 +1,418 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/*
+  Breakpoints (Tailwind): móvil por defecto; md 768px; lg 1024px; xl 1280px.
+  Para >= 1440px usar .hero-role o @media (min-width: 1440px).
+  Layout: una sola banda de contenido centrada en todas las secciones.
+  .section-padding = padding horizontal igual izquierda/derecha (centrado real).
+  .content-width = max-width + mx-auto para la columna de contenido (max-w-6xl).
+  Así en escritorio el contenido queda centrado y no pegado a la izquierda.
+*/
+@media (min-width: 1440px) {
+  .hero-role {
+    font-size: 1.125rem;
+  }
+}
+
+/* Padding horizontal de sección (usa --section-x) */
+.section-x {
+  padding-left: var(--section-x);
+  padding-right: var(--section-x);
+}
+/* Alias: section-padding = solo horizontal (retrocompat) */
+.section-padding {
+  padding-left: var(--section-x);
+  padding-right: var(--section-x);
+}
+
+/* Padding vertical de sección (usa --section-gap) */
+.section-y {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+.section-y-tight {
+  padding-top: calc(var(--section-gap) * 0.75);
+  padding-bottom: calc(var(--section-gap) * 0.75);
+}
+
+.content-width {
+  width: 100%;
+  max-width: 72rem; /* 1152px = max-w-6xl */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hero: padding vertical del contenedor de contenido (también en móvil) */
+[data-variant="hero"] .content-width {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+/* Proyectos: menos espacio entre scroll del hero y título en móvil */
+@media (max-width: 767px) {
+  #projects > div:first-child {
+    padding-top: 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-width {
+    max-width: 80rem; /* 1280px */
+  }
+}
+@media (min-width: 1440px) {
+  .content-width {
+    max-width: 88rem; /* 1408px, pantallas grandes */
+  }
+}
+
+/* Proyectos: menos espacio entre contenido, línea y siguiente proyecto en escritorio */
+.section-y-project {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+@media (min-width: 1024px) {
+  .section-y-project {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Espaciado entre bloques dentro de una sección (usa --block-gap) */
+.block-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--block-gap);
+}
+.gap-section {
+  gap: var(--section-gap);
+}
+.block-stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--block-gap-sm);
+}
+
+/* About section: bloque de líneas de texto con espaciado y alineación fijos */
+.about-lines-stack {
+  line-height: 15px;
+  height: 135px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+/* Proyectos: en escritorio, título, descripción y tags un poco más grandes */
+@media (min-width: 1024px) {
+  .project-card-text h2 {
+    font-size: 2.5rem;
+  }
+  .project-card-text .leading-relaxed {
+    font-size: 1.125rem;
+  }
+  .project-card-text .tag {
+    font-size: 0.8125rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+@media (min-width: 1280px) {
+  .project-card-text h2 {
+    font-size: 2.75rem;
+  }
+  .project-card-text .leading-relaxed {
+    font-size: 1.25rem;
+  }
+  .project-card-text .tag {
+    font-size: 0.875rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Long lists: skip off-screen work (rendering-content-visibility) */
+.section-content-visibility {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 400px;
+}
+
+/* ── CSS Custom Properties ── */
+:root {
+  --bg: #080A0F;
+  --accent: #C5E384;
+  --glass-bg: rgba(8, 10, 15, 0.55);
+  --glass-border: rgba(197, 227, 132, 0.15);
+  --glass-border-hover: rgba(197, 227, 132, 0.45);
+  --text: #F5F0ED;
+  --text-muted: rgba(245, 240, 237, 0.5);
+  --number-bg: rgba(197, 227, 132, 0.04);
+
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Espaciado: una sola escala por breakpoint (mobile → md → lg) */
+  --section-gap: 2rem;
+  --block-gap: 1rem;
+  --block-gap-sm: 0.5rem;
+  --section-x: 1.5rem;
+}
+@media (min-width: 640px) {
+  :root {
+    --section-gap: 2.5rem;
+    --block-gap: 1.125rem;
+    --block-gap-sm: 0.625rem;
+    --section-x: 2.5rem;
+  }
+}
+@media (min-width: 768px) {
+  :root {
+    --section-gap: 3rem;
+    --block-gap: 1.25rem;
+    --block-gap-sm: 0.75rem;
+    --section-x: 3.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --section-gap: 4rem;
+    --block-gap: 1.5rem;
+    --block-gap-sm: 1rem;
+    --section-x: 3.5rem;
+  }
+}
+@media (min-width: 1280px) {
+  :root {
+    --section-x: 4.5rem;
+  }
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  cursor: none;
+  color-scheme: dark;
+}
+
+@media (pointer: coarse) {
+  html { cursor: auto; }
+}
+
+/* Anclas: scroll-margin-top para que el título no quede bajo cabecera (guidelines) */
+[id="projects"],
+[id="about"] {
+  scroll-margin-top: 2rem;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── Noise texture overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-border-hover);
+}
+
+/* Títulos: balance evita viudas (guidelines) */
+h1, h2 {
+  text-wrap: balance;
+}
+
+/* ── Glass card ── */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.3s ease;
+}
+
+.glass:hover {
+  border-color: var(--glass-border-hover);
+}
+
+/* ── Decorative line ── */
+.deco-line {
+  width: 100%;
+  height: 1px;
+  background: var(--text);
+  opacity: 0.15;
+}
+
+/* ── Scanlines hover effect ── */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(197, 227, 132, 0.015) 2px,
+    rgba(197, 227, 132, 0.015) 4px
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.scanlines:hover::after {
+  opacity: 1;
+}
+
+/* ── Animated gradient border ── */
+@keyframes border-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 227, 132, 0.5),
+    rgba(197, 227, 132, 0.1),
+    rgba(197, 227, 132, 0.5)
+  );
+  background-size: 200% 200%;
+  animation: border-rotate 3s ease infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-border::before {
+    animation: none;
+  }
+}
+
+/* ── Tag chip ── */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  background: rgba(197, 227, 132, 0.08);
+  border: 1px solid rgba(197, 227, 132, 0.2);
+  border-radius: 4px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+/* ── Accent link (focus visible por guidelines) ── */
+.link-accent {
+  position: relative;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  border-radius: 2px;
+}
+.link-accent:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+.link-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.link-accent:hover {
+  color: var(--accent);
+}
+
+.link-accent:hover::after {
+  width: 100%;
+}
+
+/* ── Section number ── */
+.section-number {
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 20vw, 22rem);
+  font-weight: 800;
+  color: var(--number-bg);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+}
+
+/* ── Badge pill ── */
+.badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  background: rgba(197, 227, 132, 0.15);
+  border: 1px solid rgba(197, 227, 132, 0.4);
+  border-radius: 999px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
