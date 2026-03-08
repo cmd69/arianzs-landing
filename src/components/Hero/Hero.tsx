@@ -44,7 +44,7 @@ export default function Hero() {
           transition={noTransition ?? { duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
         />
 
-        <div className="block-stack">
+        <div className="block-stack hero-block">
           <motion.p
             className="hero-role font-mono text-sm tracking-widest uppercase"
             style={{ color: 'var(--accent)' }}
@@ -57,9 +57,9 @@ export default function Hero() {
             {profile.role}
           </motion.p>
 
-          <div className="overflow-visible min-w-0 max-w-full">
+          <div className="overflow-visible min-w-0 max-w-full hero-title-wrap">
             <motion.h1
-              className="font-display font-extrabold leading-none tracking-tight break-words max-w-full"
+              className="hero-title font-display font-extrabold leading-none tracking-tight max-w-full"
               style={{
                 fontSize: 'clamp(3rem, 8vw, 7.875rem)',
                 color: 'var(--text)',
@@ -71,14 +71,14 @@ export default function Hero() {
               transition={noTransition}
             >
               {profile.role.split(' ').map((word) => (
-                <span key={word} className="block">{word}</span>
+                <span key={word} className="block whitespace-nowrap">{word}</span>
               ))}
             </motion.h1>
           </div>
 
-          <div className="overflow-visible min-w-0 max-w-full">
+          <div className="overflow-visible min-w-0 max-w-full hero-title-wrap">
             <motion.h1
-              className="font-display font-extrabold leading-none tracking-tight break-words max-w-full"
+              className="hero-title font-display font-extrabold leading-none tracking-tight max-w-full"
               style={{
                 fontSize: 'clamp(3rem, 8vw, 7.875rem)',
                 color: 'var(--accent)',
@@ -89,7 +89,7 @@ export default function Hero() {
               custom={0.45}
               transition={noTransition}
             >
-              <span className="block">{profile.roleSecondary}</span>
+              <span className="block whitespace-nowrap">{profile.roleSecondary}</span>
             </motion.h1>
           </div>
 

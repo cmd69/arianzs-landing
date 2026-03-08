@@ -20,6 +20,14 @@
   }
 }
 
+/* Por debajo de 380px: escalar bloque hero para que DevOps / Engineer / Builder no se corten */
+@media (max-width: 379px) {
+  .hero-block {
+    transform: scale(0.85);
+    transform-origin: left top;
+  }
+}
+
 /* Padding horizontal de sección (usa --section-x) */
 .section-x {
   padding-left: var(--section-x);
