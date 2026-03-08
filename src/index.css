@@ -101,11 +101,14 @@
 
 /* About section: bloque de líneas de texto con espaciado y alineación fijos */
 .about-lines-stack {
-  line-height: 15px;
-  height: 135px;
   justify-content: center;
   align-items: flex-start;
   gap: 6px;
+}
+@media (min-width: 1024px) {
+  .about-lines-stack {
+    height: 135px;
+  }
 }
 
 /* Proyectos: en escritorio, título, descripción y tags un poco más grandes */

@@ -7,10 +7,11 @@ interface Props {
   images: string[]
   projectName: string
   imageScales?: number[]
+  maxDesktopWidth?: number
   onImageClick: (index: number) => void
 }
 
-export default function StackCarousel({ images, projectName, imageScales, onImageClick }: Props) {
+export default function StackCarousel({ images, projectName, imageScales, maxDesktopWidth = 420, onImageClick }: Props) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [imageSizes, setImageSizes] = useState<Record<number, { w: number; h: number }>>({})
@@ -48,10 +49,9 @@ export default function StackCarousel({ images, projectName, imageScales, onImag
   const isMultiImage = images.length > 1
 
   const scale = imageScales?.[activeIndex] ?? 1
-  const MAX_DESKTOP_WIDTH = 420
   const desktopWidth =
     imageSizes[activeIndex] != null
-      ? Math.min(MAX_DESKTOP_WIDTH, Math.round(imageSizes[activeIndex].w * scale))
+      ? Math.min(maxDesktopWidth, Math.round(imageSizes[activeIndex].w * scale))
       : undefined
 
   return (
@@ -167,7 +167,7 @@ export default function StackCarousel({ images, projectName, imageScales, onImag
 
       {/* Navigation dots — centrados con la imagen (mismo ancho que el carrusel en desktop) */}
       {isMultiImage && (
-        <div className="flex gap-3 justify-center items-center mt-8 mb-6 md:mb-4 min-h-[44px] lg:mt-10 lg:gap-4 w-full md:max-w-[420px] md:mr-8">
+        <div className="flex gap-3 justify-center items-center mt-8 mb-6 md:mb-4 min-h-[44px] lg:mt-10 lg:gap-4 w-full md:mr-8" style={{ maxWidth: `${maxDesktopWidth}px` }}>
           <NavDots
             count={images.length}
             activeIndex={activeIndex}

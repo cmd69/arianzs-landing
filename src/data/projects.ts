@@ -8,6 +8,7 @@ export interface Project {
   screenshot?: string
   screenshots?: string[]
   imageScales?: number[]
+  maxDesktopWidth?: number
   github?: string
   demo?: string
   inDevelopment?: boolean
@@ -29,6 +30,7 @@ export const projects: Project[] = [
       '/assets/screenshots/expensivo-wallet.png',
     ],
     imageScales: [1, 0.85, 1],
+    maxDesktopWidth: 560,
     github: 'https://github.com/cmd69/expensivo',
   },
   {

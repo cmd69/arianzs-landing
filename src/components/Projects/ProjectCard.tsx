@@ -164,6 +164,7 @@ export default function ProjectCard({ project, index }: Props) {
                 images={carouselImages}
                 projectName={project.name}
                 imageScales={project.imageScales}
+                maxDesktopWidth={project.maxDesktopWidth}
                 onImageClick={(i) => setLightboxIndex(i)}
               />
             ) : null}
