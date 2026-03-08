@@ -1,42 +1,46 @@
 # arianzs-landing
 
-Personal portfolio landing page for [Arian Zaghi](https://landing.arianzs.one) — DevOps Engineer & Builder.
+> Landing personal con Vite, React y Tailwind. Glassmorphism, proyectos del homelab y deploy con Docker.
+
+Sitio de presentación y portfolio de [Arian Zaghi](https://landing.arianzs.one): una página única que muestra rol, enlaces y proyectos personales (homelab, bots, dashboards). Diseño oscuro con estética editorial y glassmorphism.
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | [Vite](https://vitejs.dev/) + [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) |
-| Styles | [Tailwind CSS v4](https://tailwindcss.com/) via `@tailwindcss/vite` |
-| Animations | [Framer Motion](https://www.framer.com/motion/) |
-| Fonts | Syne · DM Sans · JetBrains Mono (Google Fonts) |
-| Runtime | [nginx](https://nginx.org/) (production) · Vite dev server (development) |
-| Containerization | Docker multi-stage build |
 
-## Design
+| Capa         | Tecnología                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------ |
+| Framework    | [Vite](https://vitejs.dev/) + [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) |
+| Estilos      | [Tailwind CSS v4](https://tailwindcss.com/) vía `@tailwindcss/vite`                                          |
+| Animaciones  | [Framer Motion](https://www.framer.com/motion/)                                                              |
+| Fuentes      | Syne · DM Sans · JetBrains Mono (Google Fonts)                                                               |
+| Runtime      | [nginx](https://nginx.org/) (producción) · servidor dev de Vite (desarrollo)                                 |
+| Contenedores | Docker multi-stage                                                                                           |
 
-Dark glassmorphism aesthetic with a futuristic editorial feel.
 
-- **Palette:** Midnight Espresso `#200F07` · Pistachio Frost `#C5E384`
-- **Noise texture** overlay for depth
-- **Custom cursor** with `mix-blend-mode: difference`
-- **Scroll-triggered animations** with reduced-motion support
+## Diseño
 
-## Getting Started
+Estética glassmorphism oscura con aire editorial futurista.
 
-```bash
-make setup    # copy .env.example → .env (first time only)
-make up       # start Vite dev server at http://localhost:5173
-```
+- **Paleta:** Midnight Espresso `#200F07` · Pistachio Frost `#C5E384`
+- **Textura de ruido** para profundidad
+- **Cursor personalizado** con `mix-blend-mode: difference`
+- **Animaciones al scroll** con soporte de movimiento reducido
 
-Production build:
+## Cómo empezar
 
 ```bash
-make build    # build nginx multi-stage Docker image
-make up-prod  # serve static build at PROD_PORT (default: 8090)
+make setup    # copia .env.example → .env (solo la primera vez)
+make up       # arranca el servidor de desarrollo Vite en http://localhost:5173
 ```
 
-## Project Structure
+Build de producción:
+
+```bash
+make build    # construye la imagen Docker multi-stage con nginx
+make up-prod  # sirve el build estático en PROD_PORT (por defecto: 8090)
+```
+
+## Estructura del proyecto
 
 ```
 src/
@@ -51,20 +55,20 @@ src/
 └── hooks/          # useScrollAnimation · useReducedMotion · useInViewAnimation
 ```
 
-## Content
+## Contenido
 
-Edit these files to update the site content:
+Para cambiar el contenido del sitio, edita:
 
-- `src/data/profile.ts` — name, role, social links
-- `src/data/projects.ts` — project list, screenshots, tags, links
-- `src/data/content.ts` — UI text strings (hero, about, projects section)
-- `public/assets/screenshots/` — project screenshot images
+- `src/data/profile.ts` — nombre, rol, enlaces sociales
+- `src/data/projects.ts` — lista de proyectos, capturas, tags, enlaces
+- `src/data/content.ts` — textos de la UI (hero, about, sección proyectos)
+- `public/assets/screenshots/` — imágenes de captura de los proyectos
 
-## Environment Variables
+## Variables de entorno
 
 ```env
-PORT=5173       # Vite dev server port
-PROD_PORT=8090  # nginx host port (production)
+PORT=5173       # Puerto del servidor de desarrollo Vite
+PROD_PORT=8090  # Puerto del host para nginx (producción)
 ```
 
-Copy `.env.example` to `.env` and adjust as needed.
+Copia `.env.example` a `.env` y ajústalo si hace falta.
