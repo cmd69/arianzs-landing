@@ -81,6 +81,28 @@ src/
 3. Actualizar registro en `APPS_REGISTRY.md`
 4. Distinguir claramente instancias pro vs dev en el registro
 
+## Ejecución de comandos
+
+**Todos los comandos que requieren librerías se ejecutan dentro del contenedor:**
+
+```bash
+make shell                         # shell en el contenedor
+docker compose exec app npm install <paquete>
+docker compose exec app npm run build
+```
+
+**Nunca ejecutar `npm`, `npx`, `node` u otros comandos directamente en el host.**
+
+## Convención de commits
+
+```
+[NN] TYPE(scope): descripción breve
+```
+
+- `[NN]` secuencial por repo (último: `[12]`, siguiente: `[13]`)
+- Tipos: `FEAT` `FIX` `DOCS` `REFACTOR` `CHORE` `TEST` `CI` `INFRA` `STYLE`
+- Guía completa: `~/.agent/CODING.md`
+
 ## Notas
 
 - No editar `.env` directamente — usar `.env.example` como referencia
