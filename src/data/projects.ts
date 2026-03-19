@@ -62,14 +62,14 @@ export const projects: Project[] = [
     demo: 'https://t.me/luz_informer_bot',
   },
   {
-    id: 'hermesbot',
+    id: 'plan_come',
     number: '04',
-    name: 'HermesBot',
-    description: 'Agente IA para automatización personal.',
+    name: 'PlanCome',
+    description: 'Planificador semanal de comidas con gestión de inventario.',
     longDescription:
-      'Bot inteligente con acceso a herramientas del homelab. Gestiona tareas, consulta APIs internas y automatiza flujos de trabajo mediante lenguaje natural.',
-    tags: ['Python', 'LLM', 'Telegram', 'Docker'],
+      'App web para planificar las comidas y cenas de la semana. Gestiona el inventario de ingredientes en casa, genera listas de la compra inteligentes según lo que falta, y permite crear y reutilizar recetas propias.',
+    tags: ['Next.js', 'TypeScript', 'SQLite', 'Prisma', 'Docker'],
     inDevelopment: true,
-    github: 'https://github.com/cmd69',
+    github: 'https://github.com/cmd69/plan_come',
   },
 ]
